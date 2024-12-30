@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://use.fontawasome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet">
     <title>MenuDesplegable</title>
 </head>
 
@@ -23,26 +23,139 @@
                             <i class="far fa-question-circle"></i>About
                         </a></li>
                     
-                        <li onclick="changeActive(2)">
+                     <li onclick="changeActive(2)">
                             <a href="#">
                                 <i class="fas fa-calendar-alt"></i>Events
                             </a></li>
 
-                            <li onclick="changeActive(3)">
+                    <li onclick="changeActive(3)">
                                 <a href="#">
                                     <i class="fas fa-sliders-h"></i>Services 
                                 </a></li>
 
-                                <li onclick="changeActive(4)">
+                    <li onclick="changeActive(4)">
                                     <a href="#">
                                         <i class="far fa-envelopez"></i>Contact
                                     </a></li>
                     </ul>
 
-                    <ul class="menu-theme">
-                        <li><i id="dark-mode" class="fas fa-moon"></i>
+                <ul class="menu-theme">
+                        <li><i id="dark-mode" class="fas fa-moon"></i></li>
+                        <li><i id="ligth-mode" class="fas fa-sun"></i></li>
                     </ul>
-        </div>
-    </div>
+
+                    <div class="time-wrapper">
+                        <span id="time-show" id="time"></span>
+                    </div>
+                </div>
+                <div id="btns-group" class="menu-btn">
+                    <i id="btn-close" class="fa fa-times"></i>
+                    <i id="btn-open" class="fa fa-bars"></i>
+                </div>
+            </div>
+
+            <script>
+                const sidebar = document.getElementById('sidebar');
+                const btnClose = document.getElementById('btn-close');
+                const btnOpen = document.getElementById('btn-open');
+                const btnLigth = document.getElementById('ligth-mode');
+                const btnDark = document.getElementById('dark-mode');
+                const elemSidebar = document.getElementById('sidebar');
+                const listSidebar = document.getElementsByTagName ('a');
+                const elemBody = document.getElementsByTagName('body')[0];
+                const timer = document.getElementById('time');
+
+                const sidebarOpen = () => {
+                    sidebar.style.display = 'block';
+                    btnClose.style.display = 'block';
+                    btnOpen.style.display = 'none';
+                };
+
+                const sidebarClose = () => {
+                    sidebar.style.display = 'none';
+                    btnClose.style.display = 'none';
+                    btnOpen.style.display = 'block';
+                };
+
+                const enableligthMode = () => {
+                    elembody.style.background = '#f5f5f5';
+                    elemSidebar.style.background = '#e1e9ee';
+                    btnLigthMode.style.color = '#0077b5';
+                    btnDarkMode.style.color = '#fff';
+                    timer.style.color = '#000';
+
+                    for (let i = 0; i < listSidebar.length; i++) {
+                        listSidebar[i].style.color = '#000';
+                    }
+                };
+
+                const enableDarkMode = () => {
+                    elemBody.style.background = '#e1e9ee';
+                    elemSidebar.style.background = '#283e4a';
+                    btnDarkMode.style.color = '#0077b5';
+                    btnLigthMode.style.color = '#fff';
+                    timer.style.color = '#fff';
+
+                    for (let i = 0; i < listSidebar.length; i++) {
+                        listSidebar[i].style.color = '#fff';
+                    }
+                };
+
+                btnOpen.addEventListener('click', sidebarOpen);
+                btnClose.addEventListener('click', sidebarClose);
+                btnLigthMode.addEventListener('click', enableligthMode);
+                btnDarkMode.addEventListener('click', enableDarkMode);
+
+                setInterval (() => {
+                    const time = new Date;
+                    let seconst = time.getSeconds();
+                    let minutes = time.getMinutes();
+                    let hours = time.getHours();
+                    let day = time.getDay();
+
+                    switch (day) {
+                        case 0:
+                            day = 'Sunday';
+                            break;
+                        case 1:
+                            day = 'Monday';
+                            break;
+                        case 2:
+                            day = 'Tuesday';
+                            break;
+                        case 3:
+                            day = 'Wednesday';
+                            break;
+                        case 4:
+                            day = 'Thursday';
+                            break;
+                        case 5:
+                            day = 'Friday';
+                            break;
+                        case 6:
+                            day = 'Saturday';
+                            break;
+                    }
+
+            if (seconst == 0 || seconst < 10)
+                seconts = '0${seconst}';
+            if (minutes == 0 || minutes < 10)
+                minutes = '0${minutes}';
+
+                const timer = document.getElementById('time');
+                timer.innerHTML = '${hours}:${minutes}:${seconst} - ${day}';
+
+                document.getElementsByTagName('li');
+
+                    for(let i = 0; i < list.length; i++) {
+                        list[i].className = "";
+                    }
+
+                    list[value].className = "active";
+
+            
+                }, 1000);
+
+            </script>
 </body>
 </html>
